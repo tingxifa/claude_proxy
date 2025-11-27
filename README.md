@@ -84,14 +84,27 @@ claude "你好，世界！"
 
 如果您想在本地端运行和测试此 Worker：
 
-1.  **创建 `.dev.vars` 文件**：在本地开发时，Wrangler 需要一个 `.dev.vars` 文件来读取环境变量。内容示例如下：
+1.  **创建 `.dev.vars` 文件**：在本地开发时，Wrangler 需要一个 `.dev.vars` 文件来读取环境变量。
+    ( 或在`wrangler.toml`文件中) 将`haiku`模型指向到目标模型。内容示例如下：
     ```
     HAIKU_MODEL_NAME="gpt-4o-mini"
     HAIKU_BASE_URL="https://api.your-provider.com/v1"
     HAIKU_API_KEY="sk-your-secret-key"
     ```
-2.  **启动本地服务器**：
+3.  **启动本地服务器**：
     ```bash
     npx wrangler dev
     ```
     这将在本地 `http://localhost:8787` 启动一个开发服务器。
+4.  **启动Claude Code**
+    在另一个终端窗口中
+    ```bash
+    export ANTHROPIC_BASE_URL=http://localhost:8787
+    export API_TIMEOUT_MS=600000
+    export ANTHROPIC_MODEL=haiku
+    export ANTHROPIC_SMALL_FAST_MODEL=haiku
+    ```
+    然后执行
+    ```bash
+    claude "hi"
+    ```

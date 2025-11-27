@@ -126,10 +126,10 @@ export default {
 
         const apiKey = request.headers.get('x-api-key');
         if (!apiKey) {
-            return new Response(JSON.stringify({ error: 'The "x-api-key" header is missing.' }), {
-                status: 401,
-                headers: { 'Content-Type': 'application/json' },
-            });
+        //    return new Response(JSON.stringify({ error: 'The "x-api-key" header is missing.' }), {
+        //        status: 401,
+        //        headers: { 'Content-Type': 'application/json' },
+        //    });
         }
 
         try {
@@ -137,7 +137,7 @@ export default {
 
             // --- Configuration Selection ---
             // The API key from the header is used by default for all dynamic requests.
-            let targetApiKey = apiKey;
+            let targetApiKey: string; // = apiKey;
             let targetModelName: string;
             let targetBaseUrl: string;
 
